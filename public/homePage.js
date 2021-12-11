@@ -78,7 +78,6 @@ favoritesWidget.addUserCallback = (data) => {
             favoritesWidget.fillTable(res.data);
             moneyManager.updateUsersList(res.data);
         } else {
-            console.log(res)
             favoritesWidget.setMessage(res.success, res.error);
         };
     });
