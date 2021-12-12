@@ -72,24 +72,25 @@ ApiConnector.getFavorites((res) => {
 });
 
 favoritesWidget.addUserCallback = (data) => {
-    ApiConnector.addUserToFavorites(data,(res) => {
+    ApiConnector.addUserToFavorites(data, (res) => {
         if (res.success) {
             favoritesWidget.clearTable();
             favoritesWidget.fillTable(res.data);
             moneyManager.updateUsersList(res.data);
+            favoritesWidget.setMessage(res.success, 'Добавлен пользователь: ' + data.name);
         } else {
-            console.log(res)
             favoritesWidget.setMessage(res.success, res.error);
         };
     });
 };
 
-favoritesWidget.removeUserCallback  = (data) => {
-    ApiConnector.removeUserFromFavorites(data,(res) => {
+favoritesWidget.removeUserCallback = (data) => {
+    ApiConnector.removeUserFromFavorites(data, (res) => {
         if (res.success) {
             favoritesWidget.clearTable();
             favoritesWidget.fillTable(res.data);
             moneyManager.updateUsersList(res.data);
+            favoritesWidget.setMessage(res.success, 'Удален пользователь: ' + data.name);
         } else {
             favoritesWidget.setMessage(res.success, res.error);
         };
